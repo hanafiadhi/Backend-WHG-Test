@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\BooksHistory;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         // ]);
         $this->call(CategorySeeder::class);
         $this->call(BooksSeeder::class);
+        $this->call(BooksHistorySeeder::class);
     }
 }
