@@ -30,8 +30,8 @@ class BookController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:255',
-            'qty' => 'required|integer|min:0',
-            'category_id' => 'nullable|exists:categories,id'
+            'qty' => 'required|integer|min:1',
+            'category_id' => 'required|exists:categories,id'
         ]);
 
         if ($validator->fails()) {
@@ -88,7 +88,7 @@ class BookController extends Controller
         }
 
         $validator = Validator::make($request->all(), [
-            'title' => 'required|string|max:255',
+            'title' => "required|string|max:255",
             'qty' => 'required|integer|min:0',
             'category_id' => 'nullable|exists:categories,id'
         ]);

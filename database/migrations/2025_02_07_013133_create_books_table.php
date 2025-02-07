@@ -18,8 +18,7 @@ return new class extends Migration
             $table->foreignId('category_id')
                 ->nullable()
                 ->constrained('categories')
-                ->nullOnDelete()
-                ->cascadeOnUpdate();
+                ->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -29,6 +28,9 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('books', function (Blueprint $table) {
+            $table->dropForeign(['category_id']);
+        });
         Schema::dropIfExists('books');
     }
 };

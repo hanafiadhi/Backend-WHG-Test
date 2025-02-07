@@ -16,21 +16,13 @@ class Book extends Model
         return $this->belongsTo(Category::class, 'category_id')->withDefault();
     }
 
-    public function booksHistory()
-    {
-        return $this->hasMany(BooksHistory::class, 'book_id');
-    }
 
     protected static function boot()
     {
         parent::boot();
 
-        static::saving(function ($model) {
-            $existing = Book::where('title', $model->title)
-                ->where('id', '!=', $model->id)
-                ->first();
-
-            if ($existing) {
+        static::creating(function ($model) {
+            if (Book::where('title', $model->title)->exists()) {
                 throw ValidationException::withMessages([
                     'title' => __('already exists'),
                 ]);
