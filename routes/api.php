@@ -11,8 +11,3 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 // Route::post('/category', App\Http\Controllers\Api\CategoryController::class);
 Route::apiResource('/category', CategoryController::class);
-Route::apiResource('/books', BookController::class);
-Route::post('/borrow-book', [BooksHistoryController::class, 'store']);
-Route::get('/borrow-books', [BooksHistoryController::class, 'index']);
-Route::patch('/borrow-book', [BooksHistoryController::class, 'update']);
-Route::get('/borrow-book/{order_number}', [BooksHistoryController::class, 'show']);
